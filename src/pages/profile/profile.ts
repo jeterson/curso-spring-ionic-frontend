@@ -19,27 +19,31 @@ import { API_CONFIG } from '../../config/api.config';
 })
 export class ProfilePage {
 
-  cliente:ClienteDTO;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage:StorageService, public clienteService:ClienteService) {
+  cliente: ClienteDTO;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: StorageService, public clienteService: ClienteService) {
   }
 
   ionViewDidLoad() {
     let localUser = this.storage.getLocalUser();
-    if(localUser && localUser.email){
+    if (localUser && localUser.email) {
       this.clienteService.findByEmail(localUser.email).subscribe(res => {
         this.cliente = res;
         this.getImageIfExists();
-      }, error=>{
-
+      }, error => {
+        if (error.status == 403) {
+          this.navCtrl.setRoot('HomePage');
+        }
       });
+    } else {
+      this.navCtrl.setRoot('HomePage');
     }
   }
 
-  getImageIfExists(){
+  getImageIfExists() {
     this.clienteService.getImageFromBucket(this.cliente.id).subscribe(response => {
       console.log('tem img');
       this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
-    }, error=>{
+    }, error => {
       console.log('nao tem img');
     });
   }
