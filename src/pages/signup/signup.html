@@ -16,7 +16,7 @@
       <ion-input formControlName="email" type="text"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.email.dirty && formGroup.controls.email.errors" margin-left>Valor Inválido</p>
-    <ion-list radio-group formControlName="tipo">
+    <ion-list radio-group formControlName="tipoCliente">
       <ion-list-header>
         Tipo de cliente
       </ion-list-header>
@@ -32,9 +32,9 @@
 
     <ion-item>
       <ion-label stacked>CPF ou CNPJ</ion-label>
-      <ion-input formControlName="cpfOuChpj" type="text"></ion-input>
+      <ion-input formControlName="cpfChpj" type="text"></ion-input>
     </ion-item>
-    <p class="danger" *ngIf="formGroup.controls.cpfOuChpj.dirty && formGroup.controls.cpfOuChpj.errors" margin-left>Valor Inválido</p>
+    <p class="danger" *ngIf="formGroup.controls.cpfChpj.dirty && formGroup.controls.cpfChpj.errors" margin-left>Valor Inválido</p>
     <ion-item>
       <ion-label stacked>Senha*</ion-label>
       <ion-input formControlName="senha" type="password"></ion-input>
