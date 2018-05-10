@@ -24,4 +24,8 @@ export class ClienteService {
     insert(obj: ClienteDTO): Observable<any> {
         return this.http.post(`${API_CONFIG.baseUrl}/clientes`, obj, { observe: 'response', responseType: 'text' });
     }
+
+    findById(cliente_id:string){
+        return this.http.get(`${API_CONFIG.baseUrl}/clientes/${cliente_id}`)
+    }
 }
