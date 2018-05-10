@@ -1,19 +1,24 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Categorias</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-    <ion-list>
-      <button (click)="showProdutos(item.id)" ion-item *ngFor="let item of items">
-        <ion-thumbnail item-start>
-          <img src="{{bucketUrl}}/cat{{item.id}}.jpg">
-        </ion-thumbnail>
-        <h2> {{ item.nome }} </h2>
-      </button>
-    </ion-list>
-  </ion-content>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Categorias</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-fab top right edge>
+    <button navPush="CartPage" ion-fab mini>
+      <ion-icon name="cart"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-list>
+    <button (click)="showProdutos(item.id)" ion-item *ngFor="let item of items">
+      <ion-thumbnail item-start>
+        <img src="{{bucketUrl}}/cat{{item.id}}.jpg">
+      </ion-thumbnail>
+      <h2> {{ item.nome }} </h2>
+    </button>
+  </ion-list>
+</ion-content>
