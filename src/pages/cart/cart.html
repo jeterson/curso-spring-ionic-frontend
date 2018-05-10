@@ -1,10 +1,9 @@
-
 <ion-header>
 
   <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Cart</ion-title>
   </ion-navbar>
 
@@ -12,14 +11,28 @@
 
 
 <ion-content padding>
-<ion-list>
-  <ion-item *ngFor="let item of items" >
-    <ion-thumbnail>
-      <img [src]="item.produto.imageUrl || 'assets/imgs/prod.jpg'" >
-    </ion-thumbnail>
-    <h2>{{item.produto.nome}}</h2>
-    <p>{{item.produto.preco | currency}}</p>
-    <p>{{item.quantidade}}</p>
-  </ion-item>
-</ion-list>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-thumbnail>
+        <img [src]="item.produto.imageUrl || 'assets/imgs/prod.jpg'">
+      </ion-thumbnail>
+      <h2>{{item.produto.nome}}</h2>
+      <p>{{item.produto.preco | currency}}</p>
+      <ion-icon (click)=" decreaseQuantity(item.produto)" class="nolinebreak" color="primary" name="remove-circle"></ion-icon>
+      <p class="nolinebreak">{{item.quantidade}}</p>
+      <ion-icon (click)="increaseQuantity(item.produto)" name="add-circle" color="primary"></ion-icon>
+      <ion-icon (click)="removeItem(item.produto)" name="trash" item-end color="danger"></ion-icon>
+    </ion-item>
+    
+    <ion-item *ngIf="total() > 0">
+      <h1>Total</h1>
+        <h1 item-end>{{total() | currency}}</h1>
+    </ion-item>
+
+    <ion-item *ngIf="total()<= 0">
+      <h1>Seu carrinho está vazio</h1>
+    </ion-item>
+  
+  </ion-list>
+  <button ion-button block (click)="goOn()" >Continuar Comprando</button>
 </ion-content>
