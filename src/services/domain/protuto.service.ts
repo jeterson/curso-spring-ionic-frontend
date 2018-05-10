@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { ThrowStmt } from "@angular/compiler";
 import { API_CONFIG } from "../../config/api.config";
 import { ProdutoDTO } from "../../models/produto.dto";
 import {Observable} from 'rxjs/Rx';
@@ -10,8 +9,9 @@ export class ProdutoService{
 
     constructor(public http:HttpClient){}
 
-    findByCategoria(categoria_id:string){
-        return this.http.get(`${API_CONFIG.baseUrl}/produtos/?categorias=${categoria_id}`);
+    findByCategoria(categoria_id:string, page:number = 0, linesPerPage:number = 24){
+        console.log(`${API_CONFIG.baseUrl}/produtos/?categorias=${categoria_id}&page=${page}&linesPerPage=${linesPerPage}`);
+        return this.http.get(`${API_CONFIG.baseUrl}/produtos/?categorias=${categoria_id}&page=${page}&linesPerPage=${linesPerPage}`);
     }
     findById(id:string){
         return this.http.get<ProdutoDTO>(`${API_CONFIG.baseUrl}/produtos/${id}`);
