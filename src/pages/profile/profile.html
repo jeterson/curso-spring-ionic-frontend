@@ -1,9 +1,8 @@
-
-<ion-header>    
+<ion-header>
   <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>profile</ion-title>
   </ion-navbar>
 
@@ -11,20 +10,22 @@
 
 
 <ion-content padding>
-<ion-avatar>
-  <img class="circle" [src]="cliente?.imageUrl || 'assets/imgs/avatar-blank.png'">
-</ion-avatar>
-<h2 text-center>{{cliente?.nome}}</h2>
-<p text-center>{{cliente?.email}}</p>
-<ion-card>
-  <ion-card-header>
-    Enviar imagem de perfil
-  </ion-card-header>
-  <ion-item *ngIf="picture">
-    <img [src]="picture">
-  </ion-item>
-  <ion-item>
-    <button ion-button block (click)="getCameraPicture()" [disabled]="cameraOn">Camera</button>
-  </ion-item>
-</ion-card>
+  <ion-avatar>
+    <img class="circle" [src]="cliente?.imageUrl || 'assets/imgs/avatar-blank.png'">
+  </ion-avatar>
+  <h2 text-center>{{cliente?.nome}}</h2>
+  <p text-center>{{cliente?.email}}</p>
+  <ion-card>
+    <ion-card-header>
+      Enviar imagem de perfil
+    </ion-card-header>
+    <ion-item *ngIf="picture">
+      <img [src]="picture">
+    </ion-item>
+    <ion-item>
+      <button ion-button block (click)="getCameraPicture()" [disabled]="cameraOn">Camera</button>
+      <button ion-button block outline (click)="sendPicture()" *ngIf="picture">Envia Imagem</button>
+      <button ion-button block outline (click)="cancel()" *ngIf="picture">Descartar Imagem</button>
+    </ion-item>
+  </ion-card>
 </ion-content>
