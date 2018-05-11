@@ -22,10 +22,11 @@
     <ion-item *ngIf="picture">
       <img [src]="picture">
     </ion-item>
-    <ion-item>
+    <ion-item>        
       <button ion-button block (click)="getCameraPicture()" [disabled]="cameraOn">Camera</button>
       <button ion-button block outline (click)="sendPicture()" *ngIf="picture">Envia Imagem</button>
       <button ion-button block outline (click)="cancel()" *ngIf="picture">Descartar Imagem</button>
+      <button ion-button block (click)="getGalleryPicture()" [disabled]="cameraOn">Galeria</button>
     </ion-item>
   </ion-card>
 </ion-content>
